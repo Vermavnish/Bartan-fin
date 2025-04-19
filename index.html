@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bartan Booking Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      padding: 20px;
+    }
+
+    header, footer {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .booking {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .confirmation {
+      margin-top: 15px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>शादी के लिए बर्तन किराए पर</h1>
+    <p>अब आसान बुकिंग के साथ!</p>
+  </header>
+
+  <section class="booking">
+    <h2>बुकिंग फॉर्म</h2>
+    <form id="bookingForm">
+      <input type="text" placeholder="name" required>
+      <input type="text" placeholder="gaon" required>
+      <input type="tel" placeholder="phone no" required>
+
+      <label>Bhagona:</label><input type="number" placeholder="0" min="0">
+      <label>Tap:</label><input type="number" placeholder="0" min="0">
+      <label>Balti:</label><input type="number" placeholder="0" min="0">
+      <label>Karchul:</label><input type="number" placeholder="0" min="0">
+      <label>Kathwat:</label><input type="number" placeholder="0" min="0">
+      <label>Karahi:</label><input type="number" placeholder="0" min="0">
+      <label>Buffet:</label><input type="number" placeholder="0" min="0">
+      <label>Drum:</label><input type="number" placeholder="0" min="0">
+      <label>Chulha:</label><input type="number" placeholder="0" min="0">
+      <label>Tasa:</label><input type="number" placeholder="0" min="0">
+      <label>Kisti:</label><input type="number" placeholder="0" min="0">
+      <label>Jag:</label><input type="number" placeholder="0" min="0">
+      <label>Bayana:</label><input type="text" placeholder="राशि डालें">
+
+      <label>Total Price:</label><input type="text" placeholder="₹" required>
+
+      <button type="submit">बुक करें</button>
+    </form>
+    <p class="confirmation" id="confirmationMsg"></p>
+  </section>
+
+  <footer>
+    <p>Contact: <a href="mailto:llaxmidevi528@gmail.com">llaxmidevi528@gmail.com</a></p>
+  </footer>
+
+  <script>
+    document.getElementById("bookingForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const formData = new FormData();
+
+      formData.append("entry.279773329", document.querySelector("input[placeholder='name']").value);
+      formData.append("entry.1590753584", document.querySelector("input[placeholder='gaon']").value);
+      formData.append("entry.1804803717", document.querySelector("input[placeholder='phone no']").value);
+      const inputs = document.querySelectorAll("input[placeholder='0']");
+      formData.append("entry.607044500", inputs[0].value);  // Bhagona
+      formData.append("entry.815607915", inputs[1].value);  // Tap
+      formData.append("entry.2006067316", inputs[2].value); // Balti
+      formData.append("entry.1456014599", inputs[3].value); // Karchul
+      formData.append("entry.774239458", inputs[4].value);  // Kathwat
+      formData.append("entry.1887740629", inputs[5].value); // Karahi
+      formData.append("entry.1068990586", inputs[6].value); // Buffet
+      formData.append("entry.1396870338", inputs[7].value); // Drum
+      formData.append("entry.423227728", inputs[8].value);  // Chulha
+      formData.append("entry.1853049733", inputs[9].value); // Tasa
+      formData.append("entry.1761774037", inputs[10].value); // Kisti
+      formData.append("entry.1609534179", inputs[11].value); // Jag
+
+      formData.append("entry.1248401395", document.querySelector("input[placeholder='राशि डालें']").value); // Bayana
+      formData.append("entry.568979303", document.querySelector("input[placeholder='₹']").value); // Total Price
+
+      fetch("https://docs.google.com/forms/d/e/1FAIpQLScUkGjV4lIqbrqwaIq-BDOI2968bSsTcJdEmzFUBGhsY1fQFA/formResponse", {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      }).then(() => {
+        document.getElementById("confirmationMsg").textContent = "बुकिंग सफल रही! धन्यवाद।";
+        document.getElementById("bookingForm").reset();
+      }).catch(() => {
+        document.getElementById("confirmationMsg").textContent = "कुछ गलत हुआ, कृपया फिर से प्रयास करें।";
+      });
+    });
+  </script>
+</body>
+</html>
