@@ -125,53 +125,7 @@
         method: "POST",
         mode: "no-cors",
         body: formData
-      });
-      // Submit to Jotform
-    const jotform = new FormData();
-    jotform.append("name", data.get("name"));
-    jotform.append("gaon", data.get("gaon"));
-    jotform.append("phoneNo", data.get("phoneNo"));
-    jotform.append("bhagona", data.get("bhagona"));
-    jotform.append("tap", data.get("tap"));
-    jotform.append("balti", data.get("balti"));
-    jotform.append("karchul", data.get("karchul"));
-    jotform.append("kisti", data.get("kisti"));
-    jotform.append("tasa", data.get("tasa"));
-    jotform.append("drum", data.get("drum"));
-    jotform.append("buffet", data.get("buffet"));
-    jotform.append("chulha", data.get("chulha"));
-    jotform.append("kathwat", data.get("kathwat"));
-    jotform.append("karahi", data.get("karahi"));
-    jotform.append("jag", data.get("jag"));
-
-    fetch("https://submit.jotform.com/submit/251068677038060/", {
-      method: "POST",
-      mode: "no-cors",
-      body: jotform
-    });// Submit to Jotform
-    const jotform = new FormData();
-    jotform.append("name", data.get("name"));
-    jotform.append("gaon", data.get("gaon"));
-    jotform.append("phoneNo", data.get("phoneNo"));
-    jotform.append("bhagona", data.get("bhagona"));
-    jotform.append("tap", data.get("tap"));
-    jotform.append("balti", data.get("balti"));
-    jotform.append("karchul", data.get("karchul"));
-    jotform.append("kisti", data.get("kisti"));
-    jotform.append("tasa", data.get("tasa"));
-    jotform.append("drum", data.get("drum"));
-    jotform.append("buffet", data.get("buffet"));
-    jotform.append("chulha", data.get("chulha"));
-    jotform.append("kathwat", data.get("kathwat"));
-    jotform.append("karahi", data.get("karahi"));
-    jotform.append("jag", data.get("jag"));
-
-    fetch("https://submit.jotform.com/submit/251068677038060/", {
-      method: "POST",
-      mode: "no-cors",
-      body: jotform
-    }).
-      then(() => {
+      }).then(() => {
         document.getElementById("confirmationMsg").textContent = "बुकिंग सफल रही! धन्यवाद।";
         document.getElementById("bookingForm").reset();
       }).catch(() => {
